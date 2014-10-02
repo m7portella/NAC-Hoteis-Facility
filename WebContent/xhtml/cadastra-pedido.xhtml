@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/xhtml/_template.xhtml">
+	<ui:define name="title">
+	    Cadastro de Pedido
+	</ui:define>
+	<ui:define name="content">
+	    <h2>Cadastro de Pedido</h2>
+	    <p:messages autoUpdate="true"/>
+	    <h:form>
+	    	<p:fieldset legend="pacote">
+	    		<h:panelGrid columns="2">
+	    			<p:outputLabel value="Número Quarto" for="nome" />
+					<p:inputText required="true" value="#{pedidoCadastroBean.pedido.numeroQuarto}" id="nome" />
+					<p:outputLabel value="Descrição" for="descricao" />
+					<p:inputText required="true" value="#{pedidoCadastroBean.pedido.descricao}" id="descricao" />
+					<p:outputLabel value="Data" for="data" />
+					<p:inputText required="true" value="#{pedidoCadastroBean.pedido.dataCadastro.time}" id="data">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputText>
+					<p:outputLabel value="Valor" for="valor" />
+					<p:inputText required="true" value="#{pedidoCadastroBean.pedido.valor}" id="valor" />
+					
+					<p:commandButton value="Enviar" action="#{pedidoCadastroBean.cadastrar}" />
+	    		</h:panelGrid>
+	    	</p:fieldset>
+	    </h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/xhtml/_template.xhtml">
+	<ui:define name="title">
+	    Busca de Pacotes
+	</ui:define>
+	<ui:define name="content">
+		<h2>Busca de Pedidos</h2>
+		<p:messages autoUpdate="true" />
+		<h:form>
+			<h:panelGrid columns="3">
+				<p:outputLabel value="Nome" />
+				<p:inputText value="#{pedidoBuscaBean.quarto}" />
+				<p:commandButton value="Buscar"
+					actionListener="#{pedidoBuscaBean.buscarPorQuarto}"
+					update=":tabela" />
+			</h:panelGrid>
+		</h:form>
+		<p:dataTable value="#{pedidoBuscaBean.pedidos}" var="ped" id="tabela">
+			<p:column>
+				<h:form>
+					<p:commandButton icon="ui-icon-close" onclick="confirmacao.show()">
+						<f:setPropertyActionListener target="#{pedidoBuscaBean.idPedidofinalizar}"
+							value="#{ped.id}" />
+					</p:commandButton>
+				</h:form>
+			</p:column>
+			<p:column headerText="Quarto">
+				<h:outputText value="#{ped.numeroQuarto}" />
+			</p:column>
+			<p:column headerText="Descrição">
+				<h:outputText value="#{ped.descricao}" />
+			</p:column>
+			<p:column headerText="Data">
+				<h:outputText value="#{ped.dataCadastro.time}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Status">
+				<h:outputText value="#{ped.status}" />
+			</p:column>
+		</p:dataTable>
+		<p:confirmDialog message="Deseja finalizar o Pedido?"
+			widgetVar="confirmacao">
+			<p:commandButton value="Sim"
+				actionListener="#{pedidoBuscaBean.finalizar}"
+				oncomplete="confirmacao.hide()" update=":tabela" />
+			<p:commandButton value="Não" onclick="confirmacao.hide()" />
+
+		</p:confirmDialog>
+	</ui:define>
+</ui:composition>
+</html>

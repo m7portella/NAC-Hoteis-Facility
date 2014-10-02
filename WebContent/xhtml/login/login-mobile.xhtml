@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="NAC - Login">
+		<pm:view id="login">
+			<pm:header title="Login" swatch="l">
+				
+			</pm:header>
+			<pm:content>
+				<h:form>
+					<pm:field>
+					
+						<p:outputLabel value="Email" for="email"/>
+						<p:inputText id="email" value="#{loginBean.email}" />
+					
+						<p:outputLabel value="Senha" for="pass" />
+						<p:password id="pass" value="#{loginBean.senha}" />
+						
+					</pm:field>
+					<p:commandButton value="logar" action="#{loginBean.logar}" />
+
+				</h:form>
+			</pm:content>
+		</pm:view>
+	</pm:page>
+</f:view>

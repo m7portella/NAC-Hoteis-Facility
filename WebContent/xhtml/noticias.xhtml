@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/xhtml/_template.xhtml">
+	<ui:define name="title">
+	    Noticias!
+	</ui:define>
+	<ui:define name="content">
+	    <h2>Noticias</h2>
+	    <p:feedReader var="item" 
+	    		value="http://rss.uol.com.br/feed/viagem.xml">
+	    	<h:panelGrid columns="1">	    		
+	    		<h:outputLink value="#{item.link}" target="_blank">
+	    			<h:outputText value="#{item.title}" style="font-weight:bold"/>
+	    		</h:outputLink>
+	    		<h:outputText escape="false" value="#{item.description.value}"/>
+	    		<p:separator/>
+
+	    	</h:panelGrid>
+	    </p:feedReader>
+	</ui:define>	
+</ui:composition>
+</html>
+
+
+
+
+
+

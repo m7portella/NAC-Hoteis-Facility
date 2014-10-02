@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title><ui:insert name="title">Default title</ui:insert></title>
+	<h:outputStylesheet name="estilo.css" library="css" />
+	<script type="text/javascript"
+		src="http://maps.google.com/maps/api/js?sensor=false"></script>		
+</h:head>
+
+<h:body>
+	<div id="header">
+		<div id="logo">
+			<div id="imageLogo">
+				<h:graphicImage name="logoFiap.jpg" library="img" />
+			</div>
+					<h:form>
+						<h:commandLink action="#{loginBean.deslogar}"  
+							rendered="#{sessionScope.usuario != null}">
+							<h:outputText value="Logout" />
+						</h:commandLink>
+					</h:form>
+					<h:link outcome="/xhtml/login/login"
+						rendered="#{sessionScope.usuario == null}">
+						<h:outputText value="Login"/>
+					</h:link>
+					<h:outputText value="#{sessionScope.usuario.email}"/>
+					<br/>
+					<h:outputText value="#{sessionScope.usuario.categoria}"/>
+					<h:form>
+						<h:graphicImage name="brasil.png" library="img"/>
+						<h:graphicImage name="eua.png" library="img"/>
+					</h:form>
+				</div>
+
+			</div>
+
+	<div>
+		<div id="menuPrincipal">
+			<p:menubar styleClass="menu">
+				<p:menuitem value="HOME" url="/xhtml/index.xhtml" />
+				
+				<p:submenu label="Pedido"  >
+					<p:menuitem value="Cadastrar" url="/xhtml/cadastra-pedido.xhtml"   />
+					<p:menuitem value="Buscar" url="/xhtml/busca-pedido.xhtml"   />
+				</p:submenu>
+				
+				<p:menuitem value="Noticia" url="/xhtml/noticias.xhtml"  rendered="#{sessionScope.usuario == null}"/>
+				
+				<p:menuitem value="Login" url="/xhtml/login/login.xhtml"  rendered="#{sessionScope.usuario == null}"/>
+				
+				<p:menuitem>
+				<div align="right">
+					<h:form id="sessionUser">
+						<p:menuButton value="#{sessionScope.usuario.email }" rendered="#{sessionScope.usuario != null}">
+							<p:separator />
+							<p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="ui-icon-extlink" update="sessionUser" />
+						</p:menuButton>
+					</h:form>
+				</div>	
+				</p:menuitem>
+
+			</p:menubar>
+		</div>
+	</div>
+
+
+	<div id="content">
+		<div id="innerContent">
+			<ui:insert name="content">
+			</ui:insert>
+		</div>
+	</div>
+
+	<div id="footer">
+
+		<hr />
+		<div id="copyFooter">
+			Copyright© 2014 - Plataforma Web e Arquiteturas de Integração <br />
+		</div>
+	</div>
+
+</h:body>
+</html>
+
