@@ -11,11 +11,11 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 
-import ldap.LDAPManager;
-import dao.EntityManagerFactorySingleton;
-import dao.UsuarioDAO;
-import dao.impl.UsuarioDAOImpl;
-import entity.Usuario;
+import br.com.fiap.dao.EntityManagerFactorySingleton;
+import br.com.fiap.dao.UsuarioDAO;
+import br.com.fiap.dao.impl.UsuarioDAOImpl;
+import br.com.fiap.entity.Usuario;
+import br.com.fiap.ldap.LDAPManager;
 
 
 @ManagedBean
@@ -37,21 +37,6 @@ public class UsuarioBean implements Serializable{
 
 		usuarioDao = new UsuarioDAOImpl(em);
 		usuario = new Usuario();
-		
-	}
-	
-	public void validarEmail(FacesContext context, 
-					UIComponent component, Object value)
-			throws ValidatorException{
-		
-		String email = value.toString();
-		//Procura pelo email no banco de dados
-		boolean existe = usuarioDao.existeEmail(email);
-		if (existe){
-			throw 
-				new ValidatorException(
-					new FacesMessage("Email já cadastrado"));
-		}
 		
 	}
 	

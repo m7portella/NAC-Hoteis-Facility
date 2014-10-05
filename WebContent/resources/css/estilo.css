@@ -1,106 +1,65 @@
-body{
-	margin: 0px;
-	font-family: 'Trebuchet MS';
-	color: white;
-}
-
-#imageLogo{
-	float: left;
-	width: 30%;
-	height: 100px;
-	margin: 20px;
-}
-#discLogo{
-	float:right;
-	width: 40%;
-	text-align: right;
-	color:white;
-	font-style: italic;
-	height: 100px;
-}
-#logout{
-	margin:10px;
-	height: 70px;
-}
-#logout a{
-	color:white;
-	text-decoration: none;
-	font-style: normal;
-}
-#disciplina{
-	margin: 10px;
-}
-#menuFooter ul li{
-	margin: 20px;
-	list-style-type: none;
-	display: inline;
-}
-
-#menuFooter{
-	text-align: right;
-	padding-top: 5px;
-	width: 100%;	
-}
-
-#menuPrincipal a {
-	font-size: 20px;
-}
-
-#menuPrincipal a:hover {
-	color:red;
-}
-
 #menuPrincipal{
-	width: 810px;;
+	width: 100%;
 	margin: auto;
 	text-align: left;
 }
 
-#copyFooter{
-	color: white;
+.menu{
+	height: 50px;
+}
+
+.menu .ui-menu-list {
+    padding-top: 10px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+}
+
+.ui-menubar{
+	background: rgba(0, 0, 0, 1);
+	border-radius: 0px;
+	border: 0px;
+	padding-top: 10px;
+    padding-bottom: 10px;
+	
+}
+
+.menuSuperior{
 	width: 100%;
-	text-align: center;
-}
-
-#content{
-	min-height: 500px;
-	width: 900px;
-	margin: auto;
-	background-color: black;
-	border-radius: 10px;
-	margin-top:20px;
-	box-shadow: 5px 5px 5px #888888;
-}
-
-.ui-menu{
-	box-shadow: 5px 5px 5px #888888;
-}
-
-#innerContent{
-	padding: 20px;
-}
-
-#menuFooter a{
+	height: 50px;
+	background: rgb(0, 0, 0);
 	color: white;
-	text-decoration: none;
+	padding-top: 10px;
 }
 
-#menuFooter a:hover{
-	color:red;
+.menuLogin{
+	padding-right: 20px;
+	font-size: 14px;
 }
+
+#login{
+	width: 60px;
+	height: 15px;
+	font-size: 8px;
+}
+
+#userCategoria{
+	color: white;
+}
+
 #footer{
 	radius: 10px;
 	background: black;
 	width: 100%;
-	height: 120px;
+	height: 35px;
 	margin-top: 20px;
+	padding: 1px;
+	color: rgba(250,250,250,0.7);
 }
-#header{
-	background: black;
-	width: 100%;
-	height: 120px;	
-	margin-bottom: 20px;
-	box-shadow: 5px 5px 5px #888888;
+
+.content{
+	padding: 20px;
+	font-size: 12px;
 	
 }
 

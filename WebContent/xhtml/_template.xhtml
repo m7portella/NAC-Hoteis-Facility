@@ -10,79 +10,65 @@
 	<title><ui:insert name="title">Default title</ui:insert></title>
 	<h:outputStylesheet name="estilo.css" library="css" />
 	<script type="text/javascript"
-		src="http://maps.google.com/maps/api/js?sensor=false"></script>		
+		src="http://maps.google.com/maps/api/js?sensor=false"></script>
 </h:head>
 
 <h:body>
 	<div id="header">
-		<div id="logo">
-			<div id="imageLogo">
-				<h:graphicImage name="logoFiap.jpg" library="img" />
-			</div>
-					<h:form>
-						<h:commandLink action="#{loginBean.deslogar}"  
-							rendered="#{sessionScope.usuario != null}">
-							<h:outputText value="Logout" />
-						</h:commandLink>
-					</h:form>
-					<h:link outcome="/xhtml/login/login"
-						rendered="#{sessionScope.usuario == null}">
-						<h:outputText value="Login"/>
-					</h:link>
-					<h:outputText value="#{sessionScope.usuario.email}"/>
-					<br/>
-					<h:outputText value="#{sessionScope.usuario.categoria}"/>
-					<h:form>
-						<h:graphicImage name="brasil.png" library="img"/>
-						<h:graphicImage name="eua.png" library="img"/>
-					</h:form>
-				</div>
 
-			</div>
+		<div class="menuSuperior">
+			<div class="menuLogin" align="right">
 
-	<div>
+				<h:form id="sessionUser">
+					<p:button disabled="true" value="#{sessionScope.usuario.categoria}" id="userCategoria" rendered="#{sessionScope.usuario != null}"/>
+					<p:menuButton id="login" value="#{sessionScope.usuario.email }"
+						rendered="#{sessionScope.usuario != null}" >
+						<p:separator />
+						<p:menuitem value="Logout" onclick="deslogar.show()"
+							icon="ui-icon-extlink" update="sessionUser" />
+					</p:menuButton>
+				</h:form>
+				
+			</div>
+		</div>
+
 		<div id="menuPrincipal">
 			<p:menubar styleClass="menu">
 				<p:menuitem value="HOME" url="/xhtml/index.xhtml" />
-				
-				<p:submenu label="Pedido"  >
-					<p:menuitem value="Cadastrar" url="/xhtml/cadastra-pedido.xhtml"   />
-					<p:menuitem value="Buscar" url="/xhtml/busca-pedido.xhtml"   />
+
+				<p:submenu label="Pedido">
+					<p:menuitem value="Cadastrar" url="/xhtml/cadastra-pedido.xhtml" />
+					<p:menuitem value="Buscar" url="/xhtml/busca-pedido.xhtml" />
 				</p:submenu>
-				
-				<p:menuitem value="Noticia" url="/xhtml/noticias.xhtml"  rendered="#{sessionScope.usuario == null}"/>
-				
-				<p:menuitem value="Login" url="/xhtml/login/login.xhtml"  rendered="#{sessionScope.usuario == null}"/>
-				
-				<p:menuitem>
-				<div align="right">
-					<h:form id="sessionUser">
-						<p:menuButton value="#{sessionScope.usuario.email }" rendered="#{sessionScope.usuario != null}">
-							<p:separator />
-							<p:menuitem value="Logout" action="#{loginBean.deslogar}" icon="ui-icon-extlink" update="sessionUser" />
-						</p:menuButton>
-					</h:form>
-				</div>	
-				</p:menuitem>
+
+				<p:menuitem value="Noticia" url="/xhtml/noticias.xhtml" />
+
+				<p:menuitem value="Login" url="/xhtml/login/login.xhtml"
+					rendered="#{sessionScope.usuario == null}" />
 
 			</p:menubar>
 		</div>
+		
+		<p:confirmDialog message="Deseja deslogar?"
+			widgetVar="deslogar">
+			<p:commandButton value="Sim"
+				action="#{loginBean.deslogar}"
+				oncomplete="deslogar.hide()" />
+			<p:commandButton value="Não" onclick="deslogar.hide()" />
+
+		</p:confirmDialog>
+		
+		
 	</div>
 
 
 	<div id="content">
-		<div id="innerContent">
-			<ui:insert name="content">
-			</ui:insert>
-		</div>
+		<ui:insert name="content">
+		</ui:insert>
 	</div>
 
 	<div id="footer">
-
-		<hr />
-		<div id="copyFooter">
-			Copyright© 2014 - Plataforma Web e Arquiteturas de Integração <br />
-		</div>
+		<p align="center">Desenvolvido pela Equipe Facility</p>
 	</div>
 
 </h:body>

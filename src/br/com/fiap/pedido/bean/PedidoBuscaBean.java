@@ -10,11 +10,11 @@ import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 
-import dao.EntityManagerFactorySingleton;
-import dao.PedidoDAO;
-import dao.impl.PedidoDAOImpl;
-import entity.Pedido;
-import entity.StatusPedido;
+import br.com.fiap.dao.EntityManagerFactorySingleton;
+import br.com.fiap.dao.PedidoDAO;
+import br.com.fiap.dao.impl.PedidoDAOImpl;
+import br.com.fiap.entity.Pedido;
+import br.com.fiap.entity.StatusPedido;
 
 @ManagedBean
 @RequestScoped

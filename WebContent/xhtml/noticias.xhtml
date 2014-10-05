@@ -12,7 +12,9 @@
 	    Noticias!
 	</ui:define>
 	<ui:define name="content">
-	    <h2>Noticias</h2>
+	    
+	    <div class="content">
+	    <h1>Noticias</h1>
 	    <p:feedReader var="item" 
 	    		value="http://rss.uol.com.br/feed/viagem.xml">
 	    	<h:panelGrid columns="1">	    		
@@ -24,6 +26,7 @@
 
 	    	</h:panelGrid>
 	    </p:feedReader>
+	    </div>
 	</ui:define>	
 </ui:composition>
 </html>

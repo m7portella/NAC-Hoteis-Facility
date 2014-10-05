@@ -15,16 +15,14 @@ public class LoginListener implements PhaseListener {
 
 	@Override
 	public void beforePhase(PhaseEvent arg0) {
-		//Recuperar a sessão do usuário
 		FacesContext context = arg0.getFacesContext();
 		HttpSession session = (HttpSession) 
 				context.getExternalContext().getSession(false);
 		
-		//Recupera a página que o usuário quer acessar
 		String pagina = context.getViewRoot().getViewId();
 		
-
-		if (session == null || session.getAttribute("usuario") == null){
+		
+		if ( session == null || session.getAttribute("usuario") == null){
 			NavigationHandler navigation = 
 							context.getApplication().getNavigationHandler();
 			navigation.handleNavigation(context, null, "/xhtml/login/login");
