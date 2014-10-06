@@ -8,9 +8,13 @@ import javax.faces.event.PhaseListener;
 
 public class MobileListener implements PhaseListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 414899143215533027L;
+
 	@Override
 	public void afterPhase(PhaseEvent arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

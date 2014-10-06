@@ -7,11 +7,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.persistence.EntityManager;
 
-import br.com.fiap.dao.EntityManagerFactorySingleton;
-import br.com.fiap.dao.UsuarioDAO;
-import br.com.fiap.dao.impl.UsuarioDAOImpl;
 import br.com.fiap.entity.Usuario;
 import br.com.fiap.ldap.LDAPManager;
 
@@ -20,20 +16,18 @@ import br.com.fiap.ldap.LDAPManager;
 @RequestScoped
 public class UsuarioBean implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2117479333240067380L;
+
 	private Usuario usuario;
 	
 	private String repetirSenha;
-
-	private UsuarioDAO usuarioDao;
 	
 	@PostConstruct
 	private void init(){
 		
-		EntityManager em = 
-				EntityManagerFactorySingleton
-					.getInstance().createEntityManager();
-
-		usuarioDao = new UsuarioDAOImpl(em);
 		usuario = new Usuario();
 		
 	}
@@ -75,11 +69,4 @@ public class UsuarioBean implements Serializable{
 		this.repetirSenha = repetirSenha;
 	}
 	
-	
-	
 }
-
-
-
-
-

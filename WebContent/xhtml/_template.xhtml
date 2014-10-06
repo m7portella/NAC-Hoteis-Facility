@@ -36,7 +36,7 @@
 			<p:menubar styleClass="menu">
 				<p:menuitem value="HOME" url="/xhtml/index.xhtml" />
 
-				<p:submenu label="Pedido">
+				<p:submenu label="Pedido" rendered="#{sessionScope.usuario != null}">
 					<p:menuitem value="Cadastrar" url="/xhtml/cadastra-pedido.xhtml" />
 					<p:menuitem value="Buscar" url="/xhtml/busca-pedido.xhtml" />
 				</p:submenu>

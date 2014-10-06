@@ -9,6 +9,11 @@ import javax.servlet.http.HttpSession;
 
 public class LoginListener implements PhaseListener {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5180756750068892757L;
+
 	@Override
 	public void afterPhase(PhaseEvent arg0) {
 	}
@@ -21,11 +26,12 @@ public class LoginListener implements PhaseListener {
 		
 		String pagina = context.getViewRoot().getViewId();
 		
-		
-		if ( session == null || session.getAttribute("usuario") == null){
-			NavigationHandler navigation = 
-							context.getApplication().getNavigationHandler();
-			navigation.handleNavigation(context, null, "/xhtml/login/login");
+		if (!pagina.contains("noticias")){
+			if ( session == null || session.getAttribute("usuario") == null){
+				NavigationHandler navigation = 
+								context.getApplication().getNavigationHandler();
+				navigation.handleNavigation(context, null, "/xhtml/login/login");
+			}	
 		}
 		
 	}
