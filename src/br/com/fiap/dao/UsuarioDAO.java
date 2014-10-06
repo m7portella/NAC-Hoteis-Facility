@@ -8,4 +8,6 @@ public interface UsuarioDAO
 
 	Usuario buscar(String email, String senha);
 	
+	boolean existeEmail(String email);
+	
 }

@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 
@@ -17,13 +18,13 @@ import br.com.fiap.entity.Pedido;
 import br.com.fiap.entity.StatusPedido;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class PedidoBuscaBean {
 
 	private List<Pedido> pedidos;
 	private int quarto;
 	private PedidoDAO pDAO;
-	private int idPedidofinalizar;
+	private int idPedidoFinalizar;
 	
 	@PostConstruct
 	public void init(){
@@ -32,7 +33,7 @@ public class PedidoBuscaBean {
 				EntityManagerFactorySingleton
 					.getInstance().createEntityManager();
 		pDAO = new PedidoDAOImpl(em);
-
+		idPedidoFinalizar = 0;
 	}
 	
 	public void buscarPorQuarto(){
@@ -40,7 +41,7 @@ public class PedidoBuscaBean {
 	}
 	
 	public void finalizar(){
-		Pedido p = pDAO.searchByID(idPedidofinalizar);
+		Pedido p = pDAO.searchByID(idPedidoFinalizar);
 		p.setStatus(StatusPedido.FINALIZADO);
 		pDAO.update(p);
 		String msg = "Pedido finalizado com sucesso!";
@@ -64,11 +65,11 @@ public class PedidoBuscaBean {
 	}
 
 	public int getIdPedidofinalizar() {
-		return idPedidofinalizar;
+		return idPedidoFinalizar;
 	}
 
 	public void setIdPedidofinalizar(int idPedidofinalizar) {
-		this.idPedidofinalizar = idPedidofinalizar;
+		this.idPedidoFinalizar = idPedidofinalizar;
 	}
 	
 }

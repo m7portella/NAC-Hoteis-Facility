@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.application.FacesMessage.Severity;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -45,9 +44,12 @@ public class LoginBean implements Serializable{
 	}
 	
 	public String logar(){
-		//Busca o usuário no banco relacional
-		Usuario user = dao.buscar(email, senha);
 		
+		
+		//Buscar o usuário no LDAP
+		LDAPManager ldap = new LDAPManager();
+		Usuario user = ldap.buscar(email, senha);
+	
 		if (user != null){
 			FacesContext context = FacesContext.getCurrentInstance();
 			HttpSession session = (HttpSession)
@@ -62,25 +64,26 @@ public class LoginBean implements Serializable{
 					new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválido", "Usuáio ou Senha inválido"));
 			return "/xhtml/login/login";
 		}
+		
+		//Busca o usuário no banco relacional
+		//Usuario user = dao.buscar(email, senha);
+		
+		/*if (user != null){
+			FacesContext context = FacesContext.getCurrentInstance();
+			HttpSession session = (HttpSession)
+					context.getExternalContext().getSession(true);
+			
+			session.setAttribute("usuario", user);
+			
+			return "/xhtml/index";
+		}else{
+			//Adiciona uma mensagem de erro
+			FacesContext.getCurrentInstance().addMessage(null, 
+					new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválido", "Usuáio ou Senha inválido"));
+			return "/xhtml/login/login";
+		}*/
 					
-		//Buscar o usuário no LDAP
-//		LDAPManager ldap = new LDAPManager();
-//		Usuario user = ldap.buscar(email, senha);
-	
-//		if (user != null){
-//			FacesContext context = FacesContext.getCurrentInstance();
-//			HttpSession session = (HttpSession)
-//					context.getExternalContext().getSession(true);
-//			
-//			session.setAttribute("usuario", user);
-//			
-//			return "/xhtml/index";
-//		}else{
-//			//Adiciona uma mensagem de erro
-//			FacesContext.getCurrentInstance().addMessage(null, 
-//					new FacesMessage(FacesMessage.SEVERITY_INFO,"Usuário ou senha inválido", "Usuáio ou Senha inválido"));
-//			return "/xhtml/login/login";
-//		}
+
 	}
 
 	public String getSenha() {
